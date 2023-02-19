@@ -1,0 +1,48 @@
+---
+interface Props {
+    now: string;
+}
+
+const { frontmatter } = Astro.props;
+
+type Page = {
+    name: string;
+    address: string;
+};
+const pages: Page[] = [
+    { name: "Top", address: "/" },
+    { name: "Privacy Policy", address: "/privacy_policy" },
+    { name: "Contact", address: "/contact" },
+];
+---
+
+<header class="flex justify-between items-center py-4 md:py-8 mb-4 border-b">
+    <a
+        href="/"
+        class="inline-flex items-center text-black-800 text-2xl md:text-3xl font-bold gap-2.5"
+        aria-label="logo"
+    >
+        Simplog
+    </a>
+    <nav class="hidden lg:flex gap-12">
+        {
+            pages.map((page) => (
+                <a
+                    href={page.address}
+                    class={page.address == Astro.url.pathname ? "now" : "other"}
+                >
+                    {page.name}
+                </a>
+            ))
+        }
+    </nav>
+</header>
+
+<style>
+    .now {
+        @apply text-indigo-500 text-lg font-semibold;
+    }
+    .other {
+        @apply text-gray-600 hover:text-indigo-500 active:text-indigo-700 text-lg font-semibold transition duration-100;
+    }
+</style>

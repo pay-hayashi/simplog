@@ -1,0 +1,44 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+type Contact = {
+    name: string;
+    desc: string;
+    src: string;
+    link?: string;
+};
+
+const contacts: Contact[] = [
+    {
+        name: "Email",
+        desc: "pancake.devapps@gmail.com",
+        src: "/email.svg",
+    },
+    {
+        name: "Twitter",
+        desc: "@pancake_tor",
+        src: "/twitter.svg",
+        link: "https://twitter.com/pancake_tor",
+    },
+];
+---
+
+<Layout pageName="Contact">
+    <h1>Contact</h1>
+    <div class="grid sm:grid-cols-2 xl:grid-cols-2 gap-12 xl:gap-16">
+        {
+            contacts.map(({ name, desc, src }) => (
+                <div class="flex flex-col items-center">
+                    <div class="w-12 md:w-14 h-12 md:h-14 flex justify-center items-center bg-indigo-500 text-white rounded-lg md:rounded-xl shadow-lg mb-6">
+                        <img src={src} class="m-4" />
+                    </div>
+
+                    <h3 class="text-lg md:text-xl font-semibold text-center mb-2">
+                        {name}
+                    </h3>
+                    <p class="text-gray-500 text-center mb-2">{desc}</p>
+                </div>
+            ))
+        }
+    </div>
+</Layout>
