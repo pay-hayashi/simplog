@@ -7,5 +7,5 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   integrations: [tailwind()],
   site: 'https://pay-hayashi.github.io',
-  base: 'simplog'
+  base: '/simplog'
 });
