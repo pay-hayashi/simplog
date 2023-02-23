@@ -1,24 +1,25 @@
 ---
+import astroConfig from "astro.config.mjs";
+
 interface Props {
     now: string;
 }
-
-const { frontmatter } = Astro.props;
 
 type Page = {
     name: string;
     address: string;
 };
+
 const pages: Page[] = [
-    { name: "Top", address: "/" },
-    { name: "Privacy Policy", address: "/privacy_policy" },
-    { name: "Contact", address: "/contact" },
-];
+    { name: "Top", address: "" },
+    { name: "Privacy Policy", address: "privacy_policy" },
+    { name: "Contact", address: "contact" },
+].map((page) => ({ ...page, address: astroConfig.base + page.address }));
 ---
 
 <header class="flex justify-between items-center py-4 md:py-8 mb-4 border-b">
     <a
-        href="/"
+        href={pages.find((page) => page.name == "Top")?.address}
         class="inline-flex items-center text-black-800 text-2xl md:text-3xl font-bold gap-2.5"
         aria-label="logo"
     >
@@ -40,9 +41,9 @@ const pages: Page[] = [
 
 <style>
     .now {
-        @apply text-indigo-500 text-lg font-semibold;
+        @apply text-lime-500 text-lg font-semibold;
     }
     .other {
-        @apply text-gray-600 hover:text-indigo-500 active:text-indigo-700 text-lg font-semibold transition duration-100;
+        @apply text-gray-600 hover:text-lime-500 active:text-lime-700 text-lg font-semibold transition duration-100;
     }
 </style>

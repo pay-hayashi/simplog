@@ -3,9 +3,11 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 import tailwind from "@astrojs/tailwind";
 
-// https://astro.build/config
-export default defineConfig({
+export const astroConfig = {
   integrations: [tailwind()],
   site: 'https://pay-hayashi.github.io',
-  base: '/simplog'
-});
+  base: '/simplog/'
+}
+
+// https://astro.build/config
+export default defineConfig(astroConfig);
