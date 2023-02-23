@@ -1,6 +1,4 @@
 ---
-import astroConfig from "astro.config.mjs";
-
 interface Props {
     now: string;
 }
@@ -14,7 +12,7 @@ const pages: Page[] = [
     { name: "Top", address: "" },
     { name: "Privacy Policy", address: "privacy_policy" },
     { name: "Contact", address: "contact" },
-].map((page) => ({ ...page, address: astroConfig.base + page.address }));
+].map((page) => ({ ...page, address: "/simplog/" + page.address }));
 ---
 
 <header class="flex justify-between items-center py-4 md:py-8 mb-4 border-b">
